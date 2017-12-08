@@ -1,5 +1,5 @@
 {
-  "name": "gekokujo",
+  "name": "minimal-npm-boilerplate",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -10,8 +10,8 @@
     "css:prefix": "postcss -u autoprefixer --autoprefixer.browsers '> 5%' -r ./public/assets/css/*",
     "imagemin": "imagemin ./assets/img/* -o ./public/assets/img",
     "build:css": "npm run css:scss && npm run css:prefix",
-    "build:pug": "pug --hierarchy -o ./public ./assets/tmpl; find ./public -name '_*.html' | xargs rm -rf & find ./public -name '*inc*' -type d | xargs rm -rf",
-    "build:js": "browserify ./assets/js/*.js | uglifyjs -m > ./public/assets/js/common.bundle.js",
+    "build:pug": "pug --hierarchy --pretty -o ./public ./assets/tmpl; find ./public -name '_*.html' | xargs rm -rf & find ./public -name '*inc*' -type d | xargs rm -rf",
+    "build:js": "browserify ./assets/js/*.js | uglifyjs -m > ./public/assets/js/main.js",
     "build": "npm run build:pug & npm run css:comb & npm run build:css & npm run build:js",
     "watch:js": "watch 'npm run build:js' ./assets/js/",
     "watch:pug": "watch 'npm run build:pug' ./assets/tmpl/",
@@ -20,6 +20,7 @@
     "start": "npm run watch & npm run serve"
   },
   "devDependencies": {
+    "autoprefixer": "^7.1.6",
     "browser-sync": "^2.18.12",
     "browserify": "^14.4.0",
     "csscomb": "^4.2.0",
@@ -27,9 +28,8 @@
     "node-sass": "^4.5.3",
     "postcss-cli": "^4.1.0",
     "pug": "^2.0.0-rc.2",
-    "sanitize.css": "^5.0.0",
+    "pug-cli": "^1.0.0-alpha6",
     "uglify-js": "^3.0.25",
     "watch": "^1.0.2"
-  },
-  "dependencies": {}
+  }
 }
